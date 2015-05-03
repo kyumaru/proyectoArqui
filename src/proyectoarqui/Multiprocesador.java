@@ -23,13 +23,13 @@ public class Multiprocesador {
         // TODO code application logic here
         //global=varialbes de proceso
         
-        int [] x= {0};
+        Block myBlock= new Block(0);
                 
-        CpuThread cpu0 = new CpuThread(x);
+        CpuThread cpu0 = new CpuThread(myBlock);
         cpu0.start();
         
         
-        CpuThread cpu1 = new CpuThread(x);
+        CpuThread cpu1 = new CpuThread(myBlock);
         cpu1.start();
         
           

@@ -5,22 +5,27 @@
  */
 package proyectoarqui;
 
+
 /**
  *
  * @author b12422
  */
 public class CpuThread extends Thread{
     
-    int x;
+    volatile Block block;
     
-    CpuThread(int[] x){
-        this.x=x[0];
+    CpuThread(Block block){
+        this.block=block;
+    }
+    
+    public synchronized void test(){
+       System.out.println(++block.words[0]);   
     }
     
     public void run(){
-        
+        this.test();
         //System.out.println("MyThread running");
-        System.out.println(++x);
+        //System.out.println(++x);
     }
     
 }
