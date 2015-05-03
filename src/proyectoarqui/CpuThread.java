@@ -25,7 +25,6 @@ public class CpuThread extends Thread{
     public void run(){
         this.test();
         //System.out.println("MyThread running");
-        //System.out.println(++x);
     }
     
 }
