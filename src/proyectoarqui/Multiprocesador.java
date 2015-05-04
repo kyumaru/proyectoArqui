@@ -41,12 +41,14 @@ public class Multiprocesador {
          int pos = 0;
          PCvector.add(pos);
          String linea;
-         while((linea=br.readLine())!=null){
+         while((linea=br.readLine())!=null){ // cada hilo es una fila del archivo
               System.out.println(pos + " "+ linea);
-              for (int x=0;x<linea.length();x++){
+              for (int x=0;x<linea.length();x++){ 
+                  //se estrae la instrucción y se inserta en el vector de instrucciones
                   ivector.add((int)linea.charAt(x));
                   
                }
+               // se marca el número de bloque donde inicia el siguiente hilo
               pos = pos + linea.length();
               PCvector.add(pos);
          }
