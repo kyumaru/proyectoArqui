@@ -25,7 +25,7 @@ public class Multiprocesador {
         this.PCvector = new ArrayList<>();
     }
     
-     void loadthreasd() {
+     void loadthreads() {
       File archivo = null;
       FileReader fr = null;
       BufferedReader br = null;
@@ -88,7 +88,7 @@ public class Multiprocesador {
         Multiprocesador m = new Multiprocesador();
         
         //cargar hilos en el vector de instrucciones
-        m.loadthreasd();
+        m.loadthreads();
         
         
         Block ir0=new Block();//instruction register cpu0
