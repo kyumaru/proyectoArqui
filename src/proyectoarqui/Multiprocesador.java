@@ -16,9 +16,9 @@ public class Multiprocesador {
     /**
      * @param args the command line arguments
      */
-    
-     ArrayList<Integer> ivector ;//instruction vector
-     ArrayList<Integer> PCvector;//instruction vector
+    // deben ser static para que todas las instancias referencien la misma localidad de memoria 
+    static ArrayList<Integer> ivector ;//instruction vector
+    static ArrayList<Integer> PCvector;//pc vector
 
     public Multiprocesador() {
         this.ivector = new ArrayList<>();
