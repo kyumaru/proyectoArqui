@@ -44,7 +44,7 @@ public class Multiprocesador {
          while((linea=br.readLine())!=null){ // cada hilo es una fila del archivo
               System.out.println(pos + " "+ linea);
               for (int x=0;x<linea.length();x++){ 
-                  //se estrae la instrucción y se inserta en el vector de instrucciones
+                  //se extrae la instrucción y se inserta en el vector de instrucciones
                   ivector.add((int)linea.charAt(x));
                   
                }
