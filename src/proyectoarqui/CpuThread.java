@@ -13,13 +13,17 @@ package proyectoarqui;
 public class CpuThread extends Thread{
     
     volatile Block block;
+    volatile Clock clock;
     
-    CpuThread(Block block){
+    CpuThread(Block block, Clock clock){
         this.block=block;
+        this.clock=clock;
     }
     
     public synchronized void test(){
-       System.out.println(++block.words[0]);   
+       System.out.println("thread = "+Thread.currentThread().getId()+" tick actual = "+clock.getClockTick());
+       System.out.println(++block.words[0]);  
+       System.out.println("thread = "+Thread.currentThread().getId()+" tick actual = "+clock.getClockTick());        
     }
     
     public void run(){
