@@ -7,6 +7,7 @@ package proyectoarqui;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.concurrent.CyclicBarrier;
 /**
  *
  * @author b12422
@@ -33,7 +34,7 @@ public class Multiprocesador {
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("/home/david/hola.txt");
+         archivo = new File ("C:\\Users\\raskolnnikov\\Documents\\NetBeansProjects\\proyectoArqui\\build\\classes\\proyectoarqui\\test.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
  
@@ -102,9 +103,10 @@ public class Multiprocesador {
         
         
         Block myBlock= new Block(0);
+        Clock myClock= new Clock(2);
                 
-        CpuThread cpu0 = new CpuThread(myBlock);     
-        CpuThread cpu1 = new CpuThread(myBlock);
+        CpuThread cpu0 = new CpuThread(myBlock, myClock);     
+        CpuThread cpu1 = new CpuThread(myBlock, myClock);
         cpu0.start();
         cpu1.start();
             
