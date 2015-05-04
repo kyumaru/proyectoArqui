@@ -6,7 +6,7 @@
 package proyectoarqui;
 
 import java.util.ArrayList;
-
+import java.io.*;
 /**
  *
  * @author b12422
@@ -17,6 +17,58 @@ public class Multiprocesador {
      * @param args the command line arguments
      */
     
+     ArrayList<Integer> ivector ;//instruction vector
+     ArrayList<Integer> PCvector;//instruction vector
+
+    public Multiprocesador() {
+        this.ivector = new ArrayList<>();
+        this.PCvector = new ArrayList<>();
+    }
+    
+     void loadthreasd() {
+      File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
+ 
+      try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+         archivo = new File ("/home/david/hola.txt");
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+ 
+         // Lectura del fichero
+         int pos = 0;
+         PCvector.add(pos);
+         String linea;
+         while((linea=br.readLine())!=null){
+              System.out.println(pos + " "+ linea);
+              for (int x=0;x<linea.length();x++){
+                  ivector.add((int)linea.charAt(x));
+                  
+               }
+              pos = pos + linea.length();
+              PCvector.add(pos);
+         }
+         //anula la última posición pues es inválida
+         PCvector.remove(PCvector.size()-1);
+      }
+      
+      catch(IOException e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (IOException e2){ 
+            e2.printStackTrace();
+         }
+      }
+   }
     
     //hilo principal
     public static void main(String[] args) {
@@ -31,7 +83,11 @@ public class Multiprocesador {
         
         Block []sharedMem= new Block[SMEMSIZE];//24 blocks shared memory
         
-        ArrayList<Integer> ivector = new ArrayList<>();//instruction vector
+        Multiprocesador m = new Multiprocesador();
+        
+        //cargar hilos en el vector de instrucciones
+        m.loadthreasd();
+        
         
         Block ir0=new Block();//instruction register cpu0
         Block ir1=new Block();//
