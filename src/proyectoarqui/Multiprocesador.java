@@ -113,8 +113,11 @@ public class Multiprocesador {
         y[3]=1;//offset
               
         CpuThread cpu0 = new CpuThread(0,sharedMem,myClock);
-        cpu0.ir.words=y;
+        cpu0.ir.words=y;//first exect()
+        cpu0.ir.words=y;//first exect()
+
         cpu0.start();
+        
         
         
         

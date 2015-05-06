@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package proyectoarqui;
+import java.util.ArrayList;
+
 
 
 /**
@@ -19,7 +21,7 @@ public class CpuThread extends Thread{
    volatile Block[] sharedMem;
    volatile Clock clock;
       
-
+   //constructor should receive the instruction thread to execute
     CpuThread(int cpuId,Block[] sharedMem,Clock clock){
         this.cpuId=cpuId;
         this.sharedMem=sharedMem;
@@ -31,9 +33,42 @@ public class CpuThread extends Thread{
     
     public synchronized void test(){
        //System.out.println(++block.words[0]);
-        this.loadWord(ir,cache,sharedMem,regsCpu,clock);
-        int x=0;
+       // this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+        
+       
     }
+    
+    public synchronized void exec(){
+        
+        switch (ir.words[0]) {
+            
+            case 8:  //;
+                     break;
+            
+            case 32:  //;
+                     break;
+            
+            case 34:  //;
+                     break;
+                
+            case 35:   this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+                       break;
+            
+            case 43:  //;
+                     break;
+            
+            case 4:  //;
+                     break;
+            
+            case 5:  //;
+                     break;
+                
+            case 63:  //;
+                     break;
+                
+        }
+    }
+    
     
     public synchronized void loadWord( Block ir,Cache cache,Block []sharedMem,
                                        RegistersCPU regsCpu,Clock clock){
