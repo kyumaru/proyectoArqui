@@ -34,7 +34,7 @@ public class Multiprocesador {
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("C:\\path\\test.txt");
+         archivo = new File ("C:\\hilos\\1.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
  
@@ -44,13 +44,12 @@ public class Multiprocesador {
          String linea;
          while((linea=br.readLine())!=null){ // cada hilo es una fila del archivo
               System.out.println(pos + " "+ linea);
-              for (int x=0;x<linea.length();x++){ 
+              for (String s : linea.split("\\s")){ 
                   //se extrae la instrucción y se inserta en el vector de instrucciones
-                  ivector.add((int)linea.charAt(x));
-                  
-               }
+                  this.ivector.add(Integer.parseInt(s));  
+              } 
                // se marca el número de bloque donde inicia el siguiente hilo
-              pos = pos + linea.length();
+              pos = pos + 4;
               PCvector.add(pos);
          }
          //anula la última posición pues es inválida
@@ -78,9 +77,9 @@ public class Multiprocesador {
         // TODO code application logic here
         //global=variables de proceso
         
-        //Multiprocesador m = new Multiprocesador();   
+        Multiprocesador m = new Multiprocesador();   
         //cargar hilos en el vector de instrucciones
-        //m.loadthreads();
+        m.loadthreads();
         
         //crear un reloj nuevo para 1 thread
         //new Clock(n) n must be equal to the # of threads created otherwise error no current thread
@@ -112,9 +111,9 @@ public class Multiprocesador {
         y[2]=6;//destiny
         y[3]=1;//offset
               
-        CpuThread cpu0 = new CpuThread(0,sharedMem,myClock);
-        cpu0.ir.words=y;//first exect()
-        cpu0.ir.words=y;//first exect()
+        CpuThread cpu0 = new CpuThread(0,sharedMem,myClock, m.ivector, m.PCvector);
+        //cpu0.ir.words=y;//first exect()
+        //cpu0.ir.words=y;//first exect()
 
         cpu0.start();
         
