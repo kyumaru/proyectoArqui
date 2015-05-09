@@ -34,7 +34,7 @@ public class Multiprocesador {
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("C:\\hilos\\1.txt");
+         archivo = new File ("/home/david/1.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
  
