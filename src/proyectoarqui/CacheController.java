@@ -32,13 +32,14 @@ package proyectoarqui;
             res=memBlock.getOneWord(W);
             //TODO save evicted block in sharedMem if status is M
             //cache.cacheBlocks[index].cacheTAG != -1 //do not download invalid cacheblocks
-			 /*notice how in this implementation a cache block maps to TAG index in memory since it is a Block[]
-			   in theory the memory is an byte[] so  a cache block maps to cacheTAG*BB headbyte(starting byte) in memory
-			 */
+         /*notice how in this implementation a cache block maps to TAG index in memory since it is a Block[]
+           in theory the memory is an byte[] so  a cache block maps to cacheTAG*BB headbyte(starting byte) in memory
+          */
            ///BUG!!!!! THIS SHOULD GET THE TAG OF INDEX BLOCK IN CACHE AND DOWNLOAD THERE  
-            if( (this.getStatus(index,cache)).equals("M") ){
+	   if( (this.getStatus(index,cache)).equals("M") ){
                 tiqCont=this.askTiqs(16,clock);
-                sharedMem[(cache.cacheBlocks[index].cacheTAG)]=new Block(cache.cacheBlocks[index].cacheblock);// TAG*BB/4 memory is mapped as int[] index            }
+                sharedMem[(cache.cacheBlocks[index].cacheTAG)]=new Block(cache.cacheBlocks[index].cacheblock);// TAG*BB/4 memory is mapped as int[] index
+            }
             //save fetch block in cache
             cache.cacheBlocks[index].cacheblock=memBlock;//cacheblock references new block
             cache.cacheBlocks[index].cacheTAG=TAG;
