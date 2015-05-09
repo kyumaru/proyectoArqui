@@ -57,21 +57,45 @@ public class CpuThread extends Thread{
     public synchronized void exec(){
         switch (ir.words[0]) {
             
-            case 8:  //;  
-                     System.out.println("DADDI");
+            case 8://DADDI add inmediate
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] R destiny
+                ir[3] inmediate, constant
+                */
+                     regsCpu.regs[ir.words[2]]=ir.words[1]+ir.words[3];  
+                     //System.out.println("DADDI");
                      this.pc += 4;
                      break;
             
-            case 32:  //; 
+            case 32:  //DADD add content of 2 Regs and store into Rsource
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] Rsource operand2
+                ir[3] R destiny
+                */  
+                     regsCpu.regs[ir.words[3]]=regsCpu.regs[ir.words[1]]+regsCpu.regs[ir.words[2]]; 
                      this.pc += 4;
                      break;
             
-            case 34:  //;
+            case 34:  //DSUB take away content of 1 Reg of another Reg and store into Rsource
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] Rsource operand2
+                ir[3] R destiny
+                */  
+                     regsCpu.regs[ir.words[3]]=regsCpu.regs[ir.words[1]]-regsCpu.regs[ir.words[2]];
                      this.pc += 4;
                      break;
                 
             case 35:
-                    //this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+                    this.loadWord(ir,cache,sharedMem,regsCpu,clock);
                     System.out.println("LW");  
                     this.pc += 4;
                     break;
