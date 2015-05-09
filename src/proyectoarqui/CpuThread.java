@@ -57,26 +57,51 @@ public class CpuThread extends Thread{
     public synchronized void exec(){
         switch (ir.words[0]) {
             
-            case 8:  //;  
-                     System.out.println("DADDI");
+            case 8://DADDI add inmediate
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] R destiny
+                ir[3] inmediate, constant
+                */
+                     regsCpu.regs[ir.words[2]]=ir.words[1]+ir.words[3];  
+                     //System.out.println("DADDI");
                      this.pc += 4;
                      break;
             
-            case 32:  //; 
+            case 32:  //DADD add content of 2 Regs and store into Rsource
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] Rsource operand2
+                ir[3] R destiny
+                */  
+                     regsCpu.regs[ir.words[3]]=regsCpu.regs[ir.words[1]]+regsCpu.regs[ir.words[2]]; 
                      this.pc += 4;
                      break;
             
-            case 34:  //;
+            case 34:  //DSUB take away content of 1 Reg of another Reg and store into Rsource
+                /*
+                ir Block is used to hold the 4 int MIPS intructions
+                ir[0] opcode already used at this point
+                ir[1] Rsource operand1
+                ir[2] Rsource operand2
+                ir[3] R destiny
+                */  
+                     regsCpu.regs[ir.words[3]]=regsCpu.regs[ir.words[1]]-regsCpu.regs[ir.words[2]];
                      this.pc += 4;
                      break;
                 
             case 35:
-                    //this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+                    this.loadWord(ir,cache,sharedMem,regsCpu,clock);
                     System.out.println("LW");  
                     this.pc += 4;
                     break;
             
-            case 43:  //;
+            case 43:  
+                     //this.storeWord(ir,cache,sharedMem,regsCpu,clock);
                      System.out.println("SW");  
                      this.pc += 4;
                      break;
@@ -135,6 +160,28 @@ public class CpuThread extends Thread{
         
     }
     
+	/*
+	public synchronized void storeWord( Block ir,Cache cache,Block []sharedMem,
+                                       RegistersCPU regsCpu,Clock clock){
+        
+        
+	int word = 0;//4 words/block, int in java are 4 bytes
+        final int BB=16;//bytes per block,  bytes not represented just used for this calc
+        final int BW=4;//bytes per word
+        
+        int memAddress=ir.words[1]+ir.words[3];//word number in shared memory index
+        
+        //calc bloq#, TAG, W in bloq# word#
+        int headByte=memAddress*4;//starting byte of the word in shared memory 
+        int TAG=headByte/BB; //block# in shared memory, 16 bytes per block  
+        int W=(headByte%BB)/BW;// position word# into this block
+        word = regsCpu.regs[ir.words[2]];// registro a guardar en chache
+        CacheController myController=new CacheController();
+        myController.setWord(TAG, W, cache, sharedMem,clock,word);
+        
+    }
+	*/
+	
     
     
     public void run(){
