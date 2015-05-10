@@ -57,9 +57,9 @@ public class CpuThread extends Thread{
         
         int []y=ir.words;   
         y[0]=35;//opcode
-        y[1]=2;//base
+        y[1]=0;//base
         y[2]=6;//destiny
-        y[3]=1;//offset
+        y[3]=92;//offset
         
         this.loadWord(ir, cache, sharedMem, regsCpu, clock);
         int x=0;
@@ -163,7 +163,7 @@ public class CpuThread extends Thread{
         
         int memAddress=ir.words[1]+ir.words[3];//word number as shared memory index
         //calc bloq#, TAG, W in bloq# word#
-        int headByte=memAddress*4;//starting byte of the word in shared memory 
+        int headByte=memAddress;//starting byte of the word in shared memory 
         int TAG=headByte/BB; //block# in shared memory, 16 bytes per block  
         int W=(headByte%BB)/BW;// word# into this block
         
