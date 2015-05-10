@@ -41,18 +41,21 @@ public class CpuThread extends Thread{
     public synchronized void runProgram(){
         
         
-        //int currentThread = 0;
+        int currentThread = 0;
         System.out.println("Starting run..\n");       
-        while(this.pc < this.iVector.size()){
-            //Load instruction to IR
+            while(currentThread < this.pcVector.size()){
+                while(this.pc < this.pcVector.get(currentThread)){
+                    //Load instruction to IR
                     System.out.println("\npc= "+pc);
-            ir.words[0] = this.iVector.get(pc);            
-            ir.words[1] = this.iVector.get(pc+1);
-            ir.words[2] = this.iVector.get(pc+2);
-            ir.words[3] = this.iVector.get(pc+3);
-            //Execute current instruction
-            this.exec();
-        }
+                    ir.words[0] = this.iVector.get(pc);            
+                    ir.words[1] = this.iVector.get(pc+1);
+                    ir.words[2] = this.iVector.get(pc+2);
+                    ir.words[3] = this.iVector.get(pc+3);
+                    //Execute current instruction
+                    this.exec();            
+                }
+                currentThread++;
+            }
         
         /*
         int []y=ir.words;   
@@ -79,7 +82,7 @@ public class CpuThread extends Thread{
                 ir[3] inmediate, constant
                 */
                      regsCpu.regs[ir.words[2]]=ir.words[1]+ir.words[3];  
-                     //System.out.println("DADDI");
+                     System.out.println("DADDI");
                      this.pc += 4;
                      break;
             
@@ -122,19 +125,28 @@ public class CpuThread extends Thread{
             case 4:  //beq if ($s == $t) pc += i << 2 ;                
                     System.out.println("BEQ"); 
                     
-                    /*if(this.regsCpu.getReg(ir.words[1]) == this.regsCpu.getReg(this.ir.words[2])){
+                    if(this.regsCpu.getReg(ir.words[1]) == this.regsCpu.getReg(this.ir.words[2])){
                         int offset = this.ir.words[3];
                         this.pc += (offset * 4);
                     }
                     else{
                         this.pc += 4;
-                    }*/
-                    this.pc += 4;
+                    }
                     break;
             
             case 5:  //;
-                     this.pc += 4;
-                     break;
+                    System.out.println("BNE"); 
+                    /*
+                    if(this.regsCpu.getReg(ir.words[1]) != this.regsCpu.getReg(this.ir.words[2])){
+                        int offset = this.ir.words[3];
+                        this.pc += (offset * 4);
+                    }
+                    else{
+                        this.pc += 4;
+                    }
+                    */
+                    this.pc += 4;
+                    break;
                 
             case 63:  //;
                      System.out.println("fin del hilo");  
