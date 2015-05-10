@@ -40,7 +40,7 @@ public class CpuThread extends Thread{
 
     public synchronized void runProgram(){
         
-        /*
+        
         //int currentThread = 0;
         System.out.println("Starting run..\n");       
         while(this.pc < this.iVector.size()){
@@ -53,8 +53,8 @@ public class CpuThread extends Thread{
             //Execute current instruction
             this.exec();
         }
-        */
         
+        /*
         int []y=ir.words;   
         y[0]=35;//opcode
         y[1]=0;//base
@@ -63,6 +63,7 @@ public class CpuThread extends Thread{
         
         this.loadWord(ir, cache, sharedMem, regsCpu, clock);
         int x=0;
+        */
         
     }
     
@@ -107,7 +108,7 @@ public class CpuThread extends Thread{
                      break;
                 
             case 35:
-                    //this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+                    this.loadWord(ir,cache,sharedMem,regsCpu,clock);
                     System.out.println("LW");  
                     this.pc += 4;
                     break;
