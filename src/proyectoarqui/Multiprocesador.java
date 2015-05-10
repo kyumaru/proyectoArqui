@@ -89,7 +89,7 @@ public class Multiprocesador {
         //cargar hilos en el vector de instrucciones
         ArrayList<String> threadFileList = new ArrayList<String>();
         threadFileList.add("C:\\hilos\\1.txt");
-        threadFileList.add("C:\\hilos\\2.txt");
+       threadFileList.add("C:\\hilos\\2.txt");
         threadFileList.add("C:\\hilos\\3.txt");
         threadFileList.add("C:\\hilos\\4.txt");
        
@@ -150,3 +150,4 @@ public class Multiprocesador {
          
     }
    
+}
