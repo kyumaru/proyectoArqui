@@ -5,13 +5,9 @@
         <group>
             <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/Block.java</file>
             <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/CacheController.java</file>
-            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/CacheBlock.java</file>
             <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/CpuThread.java</file>
-            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/Directory.java</file>
-            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/RegistersCPU.java</file>
-            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/DirEntry.java</file>
+            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/CpuInterface.java</file>
             <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/Multiprocesador.java</file>
-            <file>file:/C:/Users/tRasHcAn/Desktop/proyecto/src/proyectoarqui/Cache.java</file>
         </group>
     </open-files>
 </project-private>

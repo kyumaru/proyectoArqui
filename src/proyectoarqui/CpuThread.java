@@ -162,8 +162,20 @@ public class CpuThread extends Thread{
     
     
     public void run(){
-        System.out.println("Iniciando..\n");
-        this.runProgram();
+        //System.out.println("Iniciando..\n");
+        //this.runProgram();
+        
+         //load some instruccion on ir
+        //Block ir=new Block();//instruction register cpu0
+        int []y=ir.words;   
+        y[0]=35;//opcode
+        y[1]=0;//base
+        y[2]=1;//destiny
+        y[3]=5;//offset
+        
+        this.loadWord(ir, cache, sharedMem, regsCpu, clock);
+        cache.cacheBlocks[1].status="M";
+        this.loadWord(ir, cache, sharedMem, regsCpu, clock);
     }
     
 }
