@@ -107,7 +107,7 @@ public class CpuThread extends Thread{
                      break;
                 
             case 35:
-                    this.loadWord(ir,cache,sharedMem,regsCpu,clock);
+                    //this.loadWord(ir,cache,sharedMem,regsCpu,clock);
                     System.out.println("LW");  
                     this.pc += 4;
                     break;
