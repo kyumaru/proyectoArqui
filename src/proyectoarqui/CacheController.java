@@ -59,8 +59,42 @@ package proyectoarqui;
         
         return count;
     }
-    
-    
+    public synchronized void setWord(int TAG, int W, Cache cache,Block []sharedMem,Clock clock,int   word ){
+        final int BB=16;//bytes per block,  bytes not represented just used for this calc
+        final int BC=4;//blocks per cache
+        //check if block with TAG is present in cache
+        int index=TAG%BC;//cache block# to check
+        
+        int tiqCont=0;
+        
+        if( this.checkForTag(TAG,index,cache)&& this.checkForStatus(index,cache) ){//cache hit
+            	if( (this.getStatus(index,cache)).equals("M") ){
+			cache.cacheBlocks[index].cacheblock.words[W] = word;
+		}else{// se encuentra compartido
+                         //mensaje de invalidación a los otros caches
+			cache.cacheBlocks[index].cacheblock.words[W]= word;
+			cache.cacheBlocks[index].status="M";
+		}
+        }
+        else{//cache miss
+         
+            tiqCont =this.askTiqs(16,clock);
+            Block memBlock=new Block(sharedMem[TAG]);//make a new copy
+         
+            if( (this.getStatus(index,cache)).equals("M") ){
+               // tiqCont=this.askTiqs(16,clock);
+                sharedMem[cache.cacheBlocks[index].cacheTAG*BB/4]=new Block(cache.cacheBlocks[index].cacheblock);// TAG*BB/4 memory is mapped as int[] index
+                //falta escribir el nuevo bloque en cache que contiene word
+		cache.cacheBlocks[index].cacheblock= memBlock;
+                cache.cacheBlocks[index].cacheblock.words[W] = word;//graba palabra
+		cache.cacheBlocks[index].status="M";
+		cache.cacheBlocks[index].cacheTAG=TAG;
+                
+            }
+	     
+	   
+        }   
+    }
     public synchronized boolean checkForTag(int TAG,int index,Cache cache){
         boolean res=true;
         
