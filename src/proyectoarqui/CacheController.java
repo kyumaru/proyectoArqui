@@ -91,6 +91,7 @@ package proyectoarqui;
 		cache.cacheBlocks[index].cacheTAG=TAG;
                 
             }
+            // sino está uncached o inválida
 	     cache.cacheBlocks[index].cacheblock= memBlock;
                 cache.cacheBlocks[index].cacheblock.words[W] = word;//graba palabra
 		cache.cacheBlocks[index].status="M";
