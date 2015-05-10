@@ -100,7 +100,8 @@ public class CpuThread extends Thread{
                     this.pc += 4;
                     break;
             
-            case 43:  //;
+            case 43:  
+                     this.storeWord(ir,cache,sharedMem,regsCpu,clock);
                      System.out.println("SW");  
                      this.pc += 4;
                      break;
@@ -158,6 +159,27 @@ public class CpuThread extends Thread{
         regsCpu.regs[ir.words[2]]=myController.getWord(TAG, W, cache, sharedMem,clock);
         
     }
+    
+    public synchronized void storeWord( Block ir,Cache cache,Block []sharedMem,
+                                       RegistersCPU regsCpu,Clock clock){
+        
+        
+	int word = 0;//4 words/block, int in java are 4 bytes
+        final int BB=16;//bytes per block,  bytes not represented just used for this calc
+        final int BW=4;//bytes per word
+        
+        int memAddress=ir.words[1]+ir.words[3];//word number in shared memory index
+        
+        //calc bloq#, TAG, W in bloq# word#
+        int headByte=memAddress*4;//starting byte of the word in shared memory 
+        int TAG=headByte/BB; //block# in shared memory, 16 bytes per block  
+        int W=(headByte%BB)/BW;// position word# into this block
+        word = regsCpu.regs[ir.words[2]];// registro a guardar en chache
+        CacheController myController=new CacheController();
+        myController.setWord(TAG, W, cache, sharedMem,clock,word);
+        
+    }
+    
     
     
     

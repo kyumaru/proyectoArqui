@@ -34,7 +34,7 @@ public class Multiprocesador {
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("C:\\hilos\\1.txt");
+         archivo = new File ("/home/david/hola.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
  
@@ -42,13 +42,19 @@ public class Multiprocesador {
          int pos = 0;
          PCvector.add(pos);
          String linea;
-         while((linea=br.readLine())!=null){ // cada hilo es una fila del archivo
+         while((linea=br.readLine())!=null){ 
               System.out.println(pos + " "+ linea);
-              for (String s : linea.split("\\s")){ 
+              /*for (String s : linea.split("\\s")){ 
                   //se extrae la instrucción y se inserta en el vector de instrucciones
-                  this.ivector.add(Integer.parseInt(s));  
-              } 
-               // se marca el número de bloque donde inicia el siguiente hilo
+                  this.ivector.add(Integer.parseInt());  
+              } */
+              for (int x=0;x<linea.length();x++){ 
+                  //se extrae la instrucción y se inserta en el vector de instrucciones
+                  ivector.add((int)linea.charAt(x));
+                  
+               }
+            
+               // se marca el número de bloque donde inicia el siguiente instrucción
               pos = pos + 4;
               PCvector.add(pos);
          }
