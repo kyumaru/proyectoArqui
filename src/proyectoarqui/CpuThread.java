@@ -39,6 +39,8 @@ public class CpuThread extends Thread{
     }
 
     public synchronized void runProgram(){
+        
+        /*
         //int currentThread = 0;
         System.out.println("Starting run..\n");       
         while(this.pc < this.iVector.size()){
@@ -51,6 +53,16 @@ public class CpuThread extends Thread{
             //Execute current instruction
             this.exec();
         }
+        */
+        
+        int []y=ir.words;   
+        y[0]=35;//opcode
+        y[1]=2;//base
+        y[2]=6;//destiny
+        y[3]=1;//offset
+        
+        this.loadWord(ir, cache, sharedMem, regsCpu, clock);
+        int x=0;
         
     }
     

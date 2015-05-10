@@ -87,7 +87,7 @@ public class Multiprocesador {
 
         
         //create shared mem
-        final int SMEMSIZE=8;//shared mem size shoul be 24    
+        final int SMEMSIZE=24;//shared mem size shoul be 24    
         Block []sharedMem= new Block[SMEMSIZE];//24 blocks shared memory
        
         for(int i=0; i<sharedMem.length;i++){//java does not initialize def type array elements
