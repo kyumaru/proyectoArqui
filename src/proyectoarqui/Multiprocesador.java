@@ -79,7 +79,7 @@ public class Multiprocesador {
         
         Multiprocesador m = new Multiprocesador();   
         //cargar hilos en el vector de instrucciones
-        //m.loadthreads();
+        m.loadthreads();
         
         //crear un reloj nuevo para 1 thread
         //new Clock(n) n must be equal to the # of threads created otherwise error no current thread
