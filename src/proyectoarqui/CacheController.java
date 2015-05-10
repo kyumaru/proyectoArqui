@@ -83,7 +83,7 @@ package proyectoarqui;
          
             if( (this.getStatus(index,cache)).equals("M") ){
                // tiqCont=this.askTiqs(16,clock);
-                sharedMem[cache.cacheBlocks[index].cacheTAG*BB/4]=new Block(cache.cacheBlocks[index].cacheblock);// TAG*BB/4 memory is mapped as int[] index
+                sharedMem[cache.cacheBlocks[index].cacheTAG]=new Block(cache.cacheBlocks[index].cacheblock);// TAG*BB/4 memory is mapped as int[] index
                 //falta escribir el nuevo bloque en cache que contiene word
 		cache.cacheBlocks[index].cacheblock= memBlock;
                 cache.cacheBlocks[index].cacheblock.words[W] = word;//graba palabra
